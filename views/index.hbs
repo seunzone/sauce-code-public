@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+<!--
+      ___           ___
+     /  /\         /__/|
+    /  /:/        |  |:|       Haaa, gotcha! Code sniffer, what you tryna do?
+   /  /:/         |  |:|
+  /  /:/  ___   __|  |:|       Don't stress yourself, just ask us what you wanna know
+ /__/:/  /  /\ /__/\_|:|____   
+ \  \:\ /  /:/ \  \:\/:::::/
+  \  \:\  /:/   \  \::/~~~~
+   \  \:\/:/     \  \:\        Built by Seun and Lekan
+    \  \::/       \  \:\       or CALL US, +234-703-122-9501
+     \__\/         \__\/
+-->
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="School Review App">
+    <meta name="keywords" content="school, review">
+    <meta name="author" content="SauceCode">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>Consult Ifa School Review App</title>
+
+    <!--stylesheets-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.green.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!--end stylesheets-->
+    <!--Custom Styles -->
+    <style>
+    .app_img {
+        height: 50px;
+        width: 50px;
+    }
+    .my_img{
+        height: 230px;
+        width: 500px;
+    }
+    </style>
+
+    <!--google fonts-->
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Raleway|Tangerine" rel="stylesheet">
+    <!--end google fonts-->
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-wrapper">
+                        <div class="form-tabs">
+                            <a href="#" data-frm="login-frm" class="tab active">Login</a>
+                            <a href="#" data-frm="register-frm" class="tab">Register</a>
+                        </div>
+                        <form class="login-frm frm" action="/auth" method="post">
+                            <div class="form-group">
+                                <label for="email1">Username:</label>
+                                <input type="username" required name="username" autocomplete="username" id="email1">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass1">Password:</label>
+                                <input type="password" required name="password" id="pass1">
+                            </div>
+                            <div class="remember-me">
+                                <div>
+                                    <input type="checkbox" id="test1" />
+                                    <label for="test1">Remember Me</label>
+                                </div>
+                                <a href="/forgot">Forgot Password?</a>
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="SIGN IN">
+                            </div>
+                        </form>
+                        <form class="register-frm frm hide" action="/signup" method="post">
+                            <div class="form-group">
+                                <label for="email2">Email:</label>
+                                <input type="email" required name="email" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Username:</label>
+                                <input type="name" required name="username" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass3">Password:</label>
+                                <input type="password" required name="password" id="pass3">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password:</label>
+                                <input type="password" required name="password2" id="pass2">
+                            </div>
+                            <div>
+                                <label class="radio-inline" >
+                                    <input type="radio" required value="Free" name="plan">Free
+                                </label>
+                                <label class="radio-inline" >
+                                    <input type="radio" required value="Silver" name="plan">Silver
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" required value="Golden" name="plan">Golden
+                                </label>
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="REGISTER">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+</div>
+    <!-- end Login/register Modal -->
+
+<div class="modal fade" id="Free" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-wrapper">
+                        <div class="form-tabs">
+                            <a href="#" data-frm="register-frm" class="tab active">Register</a>
+                        </div>
+                        <form class="register-frm frm" action="/signup" method="post">
+                            <div class="form-group">
+                                <label for="email2">Plan:</label>
+                                <input type="name" disabled name="plan" value="free" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Email:</label>
+                                <input type="email" required name="email" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Username:</label>
+                                <input type="name" required name="username" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass3">Password:</label>
+                                <input type="password" required name="password" id="pass3">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password:</label>
+                                <input type="password" required name="password2" id="pass2">
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="REGISTER">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+</div>
+
+
+<div class="modal fade" id="Silver" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-wrapper">
+                        <div class="form-tabs">
+                            <a href="#" data-frm="register-frm" class="tab active">Register</a>
+                        </div>
+                        <form class="register-frm frm" action="/signup" method="post">
+                            <div class="form-group">
+                                <label for="email2">Plan:</label>
+                                <input type="name" disabled name="plan" value="silver" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Email:</label>
+                                <input type="email" required name="email" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Username:</label>
+                                <input type="name" required name="username" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass3">Password:</label>
+                                <input type="password" required name="password" id="pass3">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password:</label>
+                                <input type="password" required name="password2" id="pass2">
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="REGISTER">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="modal fade" id="Gold" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-wrapper">
+                        <div class="form-tabs">
+                            <a href="#" data-frm="register-frm" class="tab active">Register</a>
+                        </div>
+                        <form class="register-frm frm" action="/signup" method="post">
+                            <div class="form-group">
+                                <label for="email2">Plan:</label>
+                                <input type="name" disabled name="plan" value="golden" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Email:</label>
+                                <input type="email" required name="email" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Username:</label>
+                                <input type="name" required name="username" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass3">Password:</label>
+                                <input type="password" required name="password" id="pass3">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password:</label>
+                                <input type="password" required name="password2" id="pass2">
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="REGISTER">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--banner-->
+<div class="landing-banner">
+    <nav class="banner-menu">
+        <div class="banner-logo"><a href="#"><img src="img/logo.png"></a></div>
+        <div class="start-here">
+            <a href="/about" class="text-white">About</a> &nbsp; &nbsp;
+            <a href="/pricing" class="text-white">Pricing</a>&nbsp; &nbsp;
+            <a href="/contact" class="text-white">Contact</a>&nbsp; &nbsp;
+            {{#if userActive}}
+                {{#if req.user.admin}}
+                    <a href="/admin-page" class="btn ui-btn info">Dashboard</a>
+                {{else}}
+                    <a href="/user" class="btn ui-btn info">Dashboard</a>
+                {{/if}}
+            {{else}}
+                <a href="#" class="btn ui-btn info" data-toggle="modal" data-target="#Modal">Sign in / Register</a>
+            {{/if}}
+        </div>
+    </nav>
+
+    <div class="banner-content">
+        <h1 class="banner-title">Do you need to review a school before sending your wards there?</h1>
+        <p>CONSULT-IFA IS A PLATFORM WHERE STUDENTS AND OTHER STAKEHOLDERS CAN ANONYMOUSLY REVIEW SCHOOLS AND THEIR MANAGEMENT</p>
+        <form method="post" action="/search" >
+            <div class="select-fields">
+                <div class="sel">
+                    <select title="Service" name="type" class="wide">
+                        <option selected >Select Institution Type</option>
+                        <option value="Nursey & Primary school" >Nursery School</option>
+                        <option value="Secondary School">Primary School</option>
+                        <option value="Higher Institution">Secondary School</option>
+                    </select>
+                </div>
+                <div class="sel">
+                    <select title="Service" name="location" class="wide">
+                        <option >Select your area</option>
+                        <option value="Abia">Alimosho</option>
+                        <option value="Adamawa">Ajeromi-Ifelodun</option>
+                        <option value="Anambra">Kosofe</option>
+                        <option value="Akwa Ibom">Mushin</option>
+                        <option value="Bauchi">Oshodi-Isolo</option>
+                        <option value="Bayelsa">Ojo</option>
+                        <option value="Benue">Ikorodu</option>
+                        <option value="Borno">Surulere</option>
+                        <option value="Cross River">Agege</option>
+                        <option value="Delta">Ifako-Ijaiye</option>
+                        <option value="Ebonyi">Shomolu</option>
+                        <option value="Enugu">Amuwo-Odofin</option>
+                        <option value="Edo">Lagos Mainland</option>
+                        <option value="Ekiti">Ikeja</option>
+                        <option value="Gombe">Eti-Osa</option>
+                        <option value="Imo">Badagry</option>
+                        <option value="Jigawa">Apapa</option>
+                        <option value="Kaduna">Lagos Island</option>
+                        <option value="Kano">Epe</option>
+                        <option value="Katsina">Ibeju-Lekki</option>
+                    </select>
+                </div>
+                <button class="btn ui-btn dark-blue">Search</button>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+<!--end banner-->
+
+<hr><hr>
+<!--connecting people-->
+<div class="connect">
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="connect-img">
+                <img src="img/edit.jpg" alt="">
+            </div>
+        </div>
+        <div class="col-lg-8 col-md-8">
+            <div class="connect-info">
+                <h3>Help us Review Schools in your Area.</h3>
+                <p>
+                    This App gives you the opportunity to review schools anonymously thereby ensuring proprietors and management out their best foot forward and enable educational administrators investigate poor performing institutions.
+                    <br>
+                    <br>
+                    Simply Select the type of institution, your location, click search and leave a review to be a part of the educational revolution and create a better learning environment for everyone.
+                </p>
+                {{#if userActive}}
+                <a href="/user" class="btn ui-btn info">Dashboard</a> &nbsp;&nbsp;
+                <a href="/logout" class="btn ui-btn danger">Logout</a>
+                {{else}}
+                <a href="/login" class="btn ui-btn info">Login</a> &nbsp;&nbsp;
+                <a href="/signup" class="btn ui-btn danger">Signup</a>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+</div>
+<!--end connecting people-->
+
+<!--Quick Info-->
+{{!-- <div class="requested">
+<h3 class="text-center">How it Works!!!</h3>
+    <div class="row">
+        <div class="col-lg-4 col-md-4">
+            <div class="requested-item">
+                <img class="my_img" src="img/search.png" alt="">
+                <div class="req-item-hover">
+                    <h5><a href="#">Search for a School</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="requested-item">
+                <img class="my_img" src="img/review.png" alt="">
+                <div class="req-item-hover">
+                    <h5><a href="#">Rate and Review the School</a></h5>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4">
+            <div class="requested-item">
+                <img class="my_img" src="img/add.png" alt="">
+                <div class="req-item-hover">
+                    <h5><a href="#">Add Schools to our collection</a></h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> --}}
+<!--Quick Info-->
+
+
+<!--top rated-->
+{{!-- <div class="top-rated">
+    <h3 class="text-center">Last Added Schools</h3>
+    <div class="row">
+        {{#each last}}
+        <div class="col-lg-3 col-md-6 col-sm-6">
+            <div class="user-card">
+                <div class="top">
+                    <div class="user-photo">
+                        <div><a href="/schools/{{_id}}"><img src="img/avatar.jpg" alt=""></a></div>
+                        <span><i class="fa fa-star text-rose"></i></span>
+                    </div>
+                    <div class="user-details">
+                        <h6 class="name"> {{name}} </h6>
+                        <div class="location"><strong> {{location}} </strong></div>
+                    </div>
+                    <div class="user-counts">
+                        <div class="count-item">
+                            <i class="fa fa-thumbs-o-up text-success" aria-hidden="true"></i>
+                            <strong> {{upvotes}} </strong>
+                        </div>
+                        <div class="count-item">
+                            <i class="fa fa-pencil-square-o text-primary"></i>
+                            <strong> {{reviews.length}} </strong>
+                        </div>
+                        <div class="count-item">
+                            <i class="fa fa-thumbs-o-down text-danger" aria-hidden="true"></i>
+                            <strong> {{downvotes}} </strong>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="center">
+                    <p>
+                        {{description}}
+                    </p>
+                </div> -->
+                <div class="bottom info">
+                   <a class ="btn" href="/list"><strong>See All</strong></a> 
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div> --}}
+<!--end top rated-->
+
+
+ <!--pricing tables-->
+  {{#if userActive}}
+    
+    {{else}}
+    <div class="p-tables">
+        <div class="row">
+            <div class="col-lg-4 col-md-6"><div class="pricing-table">
+                <div class="title">
+                    <h6><strong>FREE PLAN</strong></h6>
+                </div>
+                <div class="table-content">
+                  <div class="price">
+                      <i>&#8358;</i>
+                      <h1>0</h1>
+                      <em>/yr</em>
+                  </div>
+                    <div class="offers">
+                        <p><i class="fa fa-check text-info"></i> <span>view unlimited school listings</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>review a school</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see 3 approved reviews</span></p>
+                        <p><i class="fa fa-times"></i> <span>email update on new review</span></p>
+                        <p><i class="fa fa-times"></i> <span>Secure Payments</span></p>
+                        <p><i class="fa fa-times"></i> <span>see all approved reviews</span></p>
+                        <p><i class="fa fa-times"></i> <span>see all reviews(approved / non-approved) </span></p>
+                        <p><i class="fa fa-times"></i> <span>24/7 Support Service</span></p>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#Free" class="btn ui-btn dark-blue btn-block">Get this Plan</a>
+                </div>
+            </div></div>
+            <div class="col-lg-4 col-md-6"><div class="pricing-table">
+                <div class="title">
+                    <h6><strong>SILVER PLAN</strong></h6>
+                </div>
+                <div class="table-content">
+                  <div class="price">
+                      <i>&#8358;</i>
+                      <h1>5000</h1>
+                      <em>/yr</em>
+                  </div>
+                    <div class="offers">
+                        <p><i class="fa fa-check text-info"></i> <span>view unlimited school listings</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>review a school</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see 3 approved reviews</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>email update on new review</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>Secure Payments</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see all approved reviews</span></p>
+                        <p><i class="fa fa-times"></i> <span>see all reviews(approved / non-approved) </span></p>
+                        <p><i class="fa fa-times"></i> <span>24/7 Support Service</span></p>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#Silver" class="btn ui-btn dark-blue btn-block">Get this Plan</a>
+                </div>
+            </div></div>
+            <div class="col-lg-4 col-md-6"><div class="pricing-table">
+                <div class="title">
+                    <h6><strong>GOLDEN PLAN</strong></h6>
+                </div>
+                <div class="table-content">
+                  <div class="price">
+                      <i>&#8358;</i>
+                      <h1>10000</h1>
+                      <em>/yr</em>
+                  </div>
+                    <div class="offers">
+                        <p><i class="fa fa-check text-info"></i> <span>view unlimited school listings</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>review a school</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see 3 approved reviews</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>email update on new review</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>Secure Payments</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see all approved reviews</span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>see all reviews(approved / non-approved) </span></p>
+                        <p><i class="fa fa-check text-info"></i> <span>24/7 Support Service</span></p>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#Gold" class="btn ui-btn dark-blue btn-block">Get this Plan</a>
+                </div>
+            </div></div>
+        </div>
+    </div>
+  {{/if}}
+    <!--end pricing tables-->
+
+    <!--Q&A-->
+    <div class="qna">
+        <h1 class="qna-title">q&a</h1>
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="qna-item">
+                    <h5><strong>How does it work?</strong></h5>
+                    <p>
+                        You can sign up online to see what People say
+                        about a School in your Area or any location you
+                        intend to get your wards to.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="qna-item">
+                    <h5><strong>Who can review a School?</strong></h5>
+                    <p>
+                        Anybody can review a school. However, every review
+                        is categorized a non verified review until approved by our awesome
+                        review team.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="qna-item">
+                    <h5><strong>Who Makes up the Review Team?</strong></h5>
+                    <p>
+                        We have a group of underG guys that picks up reviews
+                        of people, investigate the authenticity of a review,
+                        then mark it as a verified review.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="qna-item">
+                    <h5><strong>Can I become a reviewer?</strong></h5>
+                    <p>
+                        Yes you can, apply <a href="#">Here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end Q&A-->
+
+    
+
+
+<!--footer section-->
+<div class="footer">
+
+<div class="row">
+        <div class="col-lg-2 col-md-6">
+            <div class="footer-sec">
+                <h6>About</h6>
+                <a href="/about">About The App</a>
+                <a href="/list">See School Listings</a>
+                <a href="/contact">Contact</a>
+            
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="footer-sec">
+                <h6>Support</h6>
+                <a href="/faq">FAQ</a>
+                <a href="/reviewers">Become a Reviewer</a>
+                <a href="/pricing">Pricing</a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="footer-sec">
+                <h6>My Account</h6>
+                <a href="/login">Login</a>
+                <a href="/signup">Sign Up</a>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+            <div class="footer-sec">
+                <h6>News Letter</h6>
+                <span>Get Notified on whats up...</span>
+                <form action="#" method="post">
+                    <input type="email" required placeholder="Your Email Here">
+                    <button type="submit" class="btn ui-btn dark-blue"><i class="fa fa-send-o"></i></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-4"></div>
+            <p class="copyright footer-logo"><i  class="fa fa-copyright"></i> 2018 Saucecode.
+            Developed with <i class="fa fa-heart text-info"></i>&nbsp; by <a href="https://github.com/seunzone"><strong>Seun</strong></a> and <a href="https://github.com/leksyib"><strong>Lekan</strong></a></p><div class="col-lg-3 col-md-3">
+            </div>
+            <div class="col-lg-3 col-md-3"></div>
+        <div class="col-lg-3 col-md-3">         
+        </div>
+</div>
+</div>
+<!--end footer section-->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><head>
+
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="School Review App">
+    <meta name="keywords" content="school, review">
+    <meta name="author" content="SauceCode">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>Admin</title>
+
+    <!--stylesheets-->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.green.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Raleway|Tangerine" rel="stylesheet">
+    <!--end google fonts-->
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+
+<!-- Review School Modal -->
+<div class="modal fade" id="Review" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Review School</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="auth-wrapper">
+                    <div class="form-tabs">
+                        <a href="#" data-frm="login-frm" class="tab active">Carefully Read Details</a>
+                    </div>
+                    <form class="login-frm frm" action="#" method="post">
+                        <div class="form-group">
+                            <label for="email1">Name of School:</label>
+                            <h5>School Name</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="location">School Image</label>
+                            <img src="img/pen.jpg">
+                        </div>
+                        <div class="form-group">
+                                <label for="email">Your Email Address:</label>
+                                <h5>example@something.com</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="pass1">Type of Institution</label>
+                            <h5>Primary School</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="email1">Address:</label>
+                            <h6>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Accusantium cupiditate quas deleniti?</h6>
+                        </div>
+                        <div class="form-group">
+                                <label for="email1">Location</label>
+                                <h5>Sokoto</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">School's Description:</label>
+                            <h6>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eveniet quod ab fuga officia error cumque!</h6>
+                        </div>
+                        <br>
+                        <hr>
+                        <div class="form-tabs">
+                            <a href="#" data-frm="register-frm" class="tab">Other Details</a>
+                        </div>
+                        <div class="form-group">
+                            <label for="email1">Schools Email:</label>
+                            <h5>boom@jj.com</h5>
+                        </div>
+                        <div class="form-group">
+                            <label for="email1">Schools Number:</label>
+                            <h5>07031229501</h5>
+                        </div>
+                       <br>
+                        <div class="sub-btn">
+                            <input type="submit" class="btn ui-btn info" value="Approve">
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div> 
+<!-- end of Review Modal -->
+  <!-- Delete MODAL -->
+  <div class="modal fade" id="Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete Listing</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to delete this listing?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Agree</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- delete MODAL ENDS -->
+    <!-- User Delete MODAL -->
+    <div class="modal fade" id="DeleteUser" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Are you sure you want to delete this User?
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Agree</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- delete User ENDS -->
+
+<!--top bar-->
+<div class="top-bar">
+    <div class="slide-container">
+        <div class="top-strip">
+            <i class="fa fa-angle-left fa-2x side-nav-toggle"></i>
+        </div>
+        <div class="bottom-strip">
+            <a href="#">Admin</a> <i class="fa fa-angle-right"></i>
+            <a href="#"> Saucecode</a> <i class="fa fa-angle-right"></i>
+            <a href="#"> Listings</a>
+        </div>
+    </div>
+</div>
+<!--end top bar-->
+
+<!--side menu-->
+<div class="side-nav">
+    <div class="dash-logo">
+        <i class="fa fa-times cls-nav"></i>
+        <h2>Chief Admin</h2>
+    </div>
+    <div class="links-container">
+        <div class="panel-user">
+            <a href="#"><strong>Welcome Chief Admin</strong></a>
+        </div>
+        <ul class="list-unstyled dash-links">
+            <li><a href="/" ><i class="fa fa-th-large"></i> <span>Home</span></a></li>
+            <li><a href="#" class="active"><i class="fa fa-th-large"></i> <span>My Dashboard</span></a></li>
+            <li><a href="/list"><i class="fa fa-th-large"></i> <span>All Schools</span></a></li>
+        </ul>
+        <div class="logout"><a href="/logout">Logout</a></div>
+    </div>
+</div>
+<!--end side menu-->
+
+<!--dashboard content-->
+<div class="slide-container">
+    <div class="dashboard-content">
+<div class="row">
+    <button class="btn ui-btn info" data-toggle="modal" data-target="#Modal">Add New Listing</button><br><hr><br>
+    <!--my listings-->
+    <div class="holder col-md-6">
+            <div class="top-part"><strong>All Schools</strong><i class="fa fa-list"></i></div>
+            {{#each schools}}
+            <div class="my-listing">
+                <h5><a href="/schools/{{_id}}">{{name}}</a></h5>
+                {{#if accepted}}
+                <span><i class="fa fa-check-circle-o text-success"></i> <em>Approved</em></span>
+                {{else}}
+                <span><i class="fa fa-question-circle-o text-warning"></i> <em>Pending</em></span>
+                {{/if}}
+                &nbsp;<form method="POST" action="/schools/{{_id}}/verify"><button href="#" class="btn btn-outline-success">Verify</button></form>
+               <form method="post" action="/delete/{{_id}}">
+                    <button class="btn btn-outline-danger">Delete</button>
+                </form>
+                <div class="rating-stars">
+                    <i class="fa fa-star yel"></i>
+                    <i class="fa fa-star yel"></i>
+                    <i class="fa fa-star yel"></i>
+                    <i class="fa fa-star-half-empty"></i>
+                    <i class="fa fa-star-o yel"></i>
+                    <em>( {{_v}} Reviews)</em>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+            <!--end my listings-->
+            <!--my listings--><div class="col-md-1"></div>
+        <div class="holder col-md-5">
+                <div class="top-part"><strong>Users</strong><i class="fa fa-list"></i></div>
+                {{#each users}}
+                <div class="my-listing">
+                        <h5><i class="fa fa-user-circle-o"></i> {{username}} </h5>
+                        <span> <i class="fa fa-envelope-open"></i><em> {{email}} </em></span>
+                        &nbsp;<a href="#" class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteUser"><i class="fa fa-minus-circle"></i>Delete</a>
+                </div>
+                {{/each}}
+            </div>
+                <!--end my listings-->
+</div>
+
+        <!--dashboard footer-->
+        <div class="dash-footer">
+            <i  class="fa fa-copyright"></i> 2018 Saucecode.
+            Developed with <i class="fa fa-heart text-info"></i>&nbsp; by <a href="https://github.com/seunzone"><strong>&nbsp;Seun&nbsp;</strong></a> and &nbsp;<a href="https://github.com/leksyib"><strong>Lekan</strong></a></p>
+        </div>
+        <!--end dashboard footer-->
+
+    </div>
+</div>
+<!--end dashboard content-->
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/app.js"></script>
+
+</body>
+</html>

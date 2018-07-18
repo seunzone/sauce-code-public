@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><head>
+
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="School Review App">
+    <meta name="keywords" content="school, review">
+    <meta name="author" content="SauceCode">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <!-- FAcebook meta tags -->
+    <meta property="og:url"         content="{{host}}/schools/{{school._id}}" />
+    <meta property="og:type"        content="school" />
+    <meta property="og:title"       content="{{school.name}}" />
+    <meta property="og:description" content="{{school.description}}" />
+    <meta property="og:image"       content="{{school.image}}" />
+
+    <title> {{school.name}} </title>
+
+    <!--stylesheets-->
+
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.green.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/css/perfect-scrollbar.css">
+    <link rel="stylesheet" href="/css/app.css">
+
+    <!--end stylesheets-->
+    <style>
+        .twt_img{
+            height: 24px;
+            width: 84px;
+        }
+    </style>
+    <!--google fonts-->
+
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Raleway|Tangerine" rel="stylesheet">
+    <!--end google fonts-->
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+    <!--Facebook SDK -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
+    fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
+
+<!--top navbar-->
+<nav class="ui-nav">
+        <div class="logo"><a href="/"><img src="/img/logo.png"></a></div>
+        <div class="start-here">
+            {{#if userActive}}
+                {{#if req.user.admin}}
+                    <a href="/admin-page" class="btn ui-btn info">Dashboard</a>
+                {{else}}
+                    <a href="/user" class="btn ui-btn info">Dashboard</a>
+                {{/if}}
+            {{else}}
+                <a href="#" class="btn ui-btn info" data-toggle="modal" data-target="#Modal">Sign in / Register</a>
+            {{/if}}
+        </div>
+        <i class="fa fa-bars open-menu"></i>
+    </nav>
+<!--end top navbar-->
+<div class="content-wrapper">
+
+    <!--listing detail-->
+    <div class="listing-detail">
+
+        <!--main section-->
+        <div class="detail-main-section">
+            <div class="detail-cover-img">
+                {{#if school.image}}
+                <img src="{{school.image}}" alt="{{school.image}}">
+                {{else}}
+                <img src="/img/cooker.jpg" alt="">
+                {{/if}}
+                <div class="cover-shade">
+                    <h4> {{school.name}} </h4>
+                    <strong><i class="fa fa-map-marker text-info"></i> {{school.address}} {{school.location}} </strong>
+                </div>
+            </div>
+            <div class="detail-action">
+                {{#if school.accepted}}
+                <strong><i class="fa fa-check-circle-o text-success"></i> Verified Listing</strong>
+                {{else}}
+                <strong><i class="fa fa-check-circle-o text-danger"></i> Non-Verified Listing</strong>
+                {{/if}}
+                <div class="action">
+                     <div class="user-counts">
+                        <div class="count-item">
+                           <span>{{school.upvotes}}</span> <i class="fa fa-thumbs-o-up text-success" aria-hidden="true"></i>&nbsp;
+                            <span>{{school.downvotes}}</span> <i class="fa fa-thumbs-o-down text-danger" aria-hidden="true"></i>&nbsp;
+                            <span>{{school.issues}}</span> <i class="fa fa-exclamation-triangle text-rose" aria-hidden="true"></i>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <p class="detail-description">
+                {{school.description}}
+                <br>
+            </p>
+
+            <div class="detail-content">
+
+                <div class="reviews">
+                    <h5>Reviews</h5>
+                    {{#each school.reviews}}
+                    <div class="comments">
+                        <div class="comment">
+                            <div class="comment-info">
+                                <h6 class="comment-name"> {{name}} </h6>
+                                <i> {{updatedAt}} </i>
+                                <p>
+                                    {{comment}} <span class="badge {{type}}">{{type}}</span>
+                                </p>
+                            </div>
+                        </div><hr>
+                    </div>
+                    {{/each}}
+                    <!--review form-->
+                    <div class="review-frm">
+                        <h5>Add Review</h5>
+                        <form action="/schools/{{school._id}}/review" method="post">
+                            <div class="rate">
+                                <div class="btn-group">
+                                    <label class="btn btn-success">
+                                        <input type="radio" name="reviewtype" value="upvote" id="option2" autocomplete="off"> 
+                                        <i class="fa fa-thumbs-o-up text-white" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Upvote
+                                    </label>&nbsp;&nbsp;&nbsp;
+                                    <label class="btn btn-warning">
+                                        <input type="radio" name="reviewtype" value="downvote" id="option2" autocomplete="off">
+                                         <i class="fa fa-thumbs-o-down" aria-hidden="true"></i>&nbsp;Downvote
+                                    </label>&nbsp;&nbsp;&nbsp;
+                                    <label class="btn btn-danger">
+                                        <input type="radio" name="reviewtype" value="issue" id="option3" autocomplete="off"> 
+                                        <i class="fa fa-exclamation-triangle text-white" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;&nbsp;Issue
+                                    </label>
+                                    </div>
+                                </div>
+                            <div class="form-group">
+                                {{#if userActive}}
+                                <input name="name" placeholder="Reviewing school as {{userActive.username}}" readonly>
+                                {{else}}
+                                <input name="name" placeholder="Your Name" required>
+                                {{/if}}
+                                <textarea name="comment" id="message" placeholder="Your Message Here ..." rows="3" required></textarea>
+                            </div>
+                            <button type="submit" class="btn ui-btn dark-blue">Submit</button>
+                        </form>
+                    </div>
+                    <!--end review form-->
+
+                </div>
+
+            </div>
+
+        </div>  
+        <!--end main section-->
+
+        <!--aside section-->
+        <aside class="detail-aside-section">
+            <div class="box">
+                <div class="rating-b">
+                    <h1 class="text-center">{{school.reviews.length}}</h1>
+                    <p class="text-center"><strong>Reviews</strong></p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="rating-b">
+                    <h2 align="center">Share on</h2>
+                    <div align="center">
+                        &nbsp;<div class="fb-share-button" data-href="{{host}}/schools/{{school._id}}" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsaucecode.herokuapp.com%2Fschools%2F%3Aid&amp;src=sdkpreparse">Share</a></div>
+                        <br/><br/>
+                        <a class="twitter-share-button"
+                        href="https://twitter.com/intent/tweet?text=kindly%20tweet%20for%20a%20review%20built%20by%20@seunzone%20and%20@leksyib%20for%20@saucecodexyz%20follow%20this%20link%20{{host}}/schools/{{school._id}}%20#Saucecode2018">
+                        <img class="twt_img" src="/img/tweet.png"></a>
+                    </div>
+                </div>
+            </div>
+            <div class="service-sidebar">
+                <h4>More Details</h4>
+                <hr>
+                <ul class="list-unstyled cont-info">
+                    <li><i class="fa fa-phone text-mayan"></i> <span> {{school.phone}} </span></li>
+                    <li><i class="fa fa-envelope-o text-rose"></i> <a href="mailto:{{school.email}}"> {{school.email}} </a></li>
+                    <li><i class="fa fa-map-marker"></i> <span> {{school.location}} </span></li>
+                    <li><i class="fa fa-globe"></i> <a href="#"> {{school.website}} </a></li>
+                </ul>
+
+            </div><br><br>
+        </aside>
+        <!--end aside section-->
+    </div>
+    <!--listing detail-->
+
+</div>
+
+<!--footer section-->
+<div class="footer">
+        <div class="row">
+            <div class="col-lg-4 col-md-4"></div><p class="copyright footer-logo"><i  class="fa fa-copyright"></i> 2018 Saucecode.
+                Developed with <i class="fa fa-heart text-info"></i>&nbsp; by <a href="https://github.com/seunzone"><strong>Seun</strong></a> and <a href="https://github.com/leksyib"><strong>Lekan</strong></a></p><div class="col-lg-3 col-md-3">
+                </div>
+                <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-3 col-md-3">         
+            </div>
+    </div>
+    </div>
+    <!--end footer section-->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.jquery.min.js"></script>
+<script src=""></script>
+<script src="js/app.js"></script>
+
+
+
+</body>
+
+</html>

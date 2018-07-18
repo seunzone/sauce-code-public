@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+
+    <!--meta tags-->
+
+    <meta charset="UTF-8">
+    <meta name="description" content="School Review App">
+    <meta name="keywords" content="school, review">
+    <meta name="author" content="SauceCode">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--end meta tags-->
+
+    <title>School Review</title>
+
+    <!--stylesheets-->
+
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/css/nice-select.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.green.min.css">
+    <link rel="stylesheet" href="css/app.css">
+
+    <!--end stylesheets-->
+
+    <!--google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:700|Raleway|Tangerine" rel="stylesheet">
+    <!--end google fonts-->
+     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+</head>
+<body> 
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">My Account</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="auth-wrapper">
+                        <div class="form-tabs">
+                            <a href="#" data-frm="login-frm" class="tab active">Login</a>
+                            <a href="#" data-frm="register-frm" class="tab">Register</a>
+                        </div>
+                        <form class="login-frm frm" action="/auth" method="post">
+                            <div class="form-group">
+                                <label for="email1">Username:</label>
+                                <input type="username" required name="username" autocomplete="email" id="email1">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass1">Password:</label>
+                                <input type="password" required name="password" id="pass1">
+                            </div>
+                            <div class="remember-me">
+                                <div>
+                                    <input type="checkbox" id="test1" />
+                                    <label for="test1">Remember Me</label>
+                                </div>
+                                <a href="#">Forgot Password?</a>
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="SIGN IN">
+                            </div>
+                        </form>
+                        <form class="register-frm frm hide" action="/signup" method="post">
+                            <div class="form-group">
+                                <label for="email2">Email:</label>
+                                <input type="email" required name="email" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="email2">Username:</label>
+                                <input type="name" required name="username" autocomplete="email" id="email2">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass3">Password:</label>
+                                <input type="password" required name="password" id="pass3">
+                            </div>
+                            <div class="form-group">
+                                <label for="pass2">Confirm Password:</label>
+                                <input type="password" required name="password2" id="pass2">
+                            </div>
+                            <div class="sub-btn">
+                                <input type="submit" class="btn ui-btn info" value="REGISTER">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Login/register Modal -->
+
+<!--banner-->
+<nav class="ui-nav">
+    <div class="logo"><a href="/"><img src="img/logo.png"></a></div>
+    <div class="start-here">
+            {{#if userActive}}
+                {{#if req.user.admin}}
+                    <a href="/admin-page" class="btn ui-btn info">Dashboard</a>
+                {{else}}
+                    <a href="/user" class="btn ui-btn info">Dashboard</a>
+                {{/if}}
+            {{else}}
+                <a href="#" class="btn ui-btn info" data-toggle="modal" data-target="#Modal">Sign in / Register</a>
+            {{/if}}
+        </div>
+</nav>
+<!--end top navbar-->
+
+<div class="content-wrapper">
+
+    <!--banner-->
+    <div class="listings-banner">
+            <div class="select-fields">
+                <div class="sel">
+                    <form action="/search" method="POST">
+                        <select title="Service" name="type" class="wide">
+                            <option selected >Select Institution Type</option>
+                            <option value="Nursey & Primary school" >Nursery & Primary School</option>
+                            <option value="Secondary School">Secondary School</option>
+                            <option value="Higher Institution">Higher Institution</option>
+                            <option value="Others">Others</option>
+                        </select>
+                        </div>
+                        <div class="sel">
+                            <select title="Service" name="location" class="wide">
+                                <option >Select a State</option>
+                                <option value="Abia">Abia</option>
+                                <option value="Adamawa">Adamawa</option>
+                                <option value="Anambra">Anambra</option>
+                                <option value="Akwa Ibom">Akwa Ibom</option>
+                                <option value="Bauchi">Bauchi</option>
+                                <option value="Bayelsa">Bayelsa</option>
+                                <option value="Benue">Benue</option>
+                                <option value="Borno">Borno</option>
+                                <option value="Cross River">Cross River</option>
+                                <option value="Delta">Delta</option>
+                                <option value="Ebonyi">Ebonyi</option>
+                                <option value="Enugu">Enugu</option>
+                                <option value="Edo">Edo</option>
+                                <option value="Ekiti">Ekiti</option>
+                                <option value="Gombe">Gombe</option>
+                                <option value="Imo">Imo</option>
+                                <option value="Jigawa">Jigawa</option>
+                                <option value="Kaduna">Kaduna</option>
+                                <option value="Kano">Kano</option>
+                                <option value="Katsina">Katsina</option>
+                                <option value="Kebbi">Kebbi</option>
+                                <option value="Kogi">Kogi</option>
+                                <option value="Kwara">Kwara</option>
+                                <option value="Lagos">Lagos</option>
+                                <option value="Nasarawa">Nasarawa</option>
+                                <option value="Niger">Niger</option>
+                                <option value="Ogun">Ogun</option>
+                                <option value="Ondo">Ondo</option>
+                                <option value="Osun<">Osun</option>
+                                <option value="Oyo">Oyo</option>
+                                <option value="Plateau">Plateau</option>
+                                <option value="Rivers">Rivers</option>
+                                <option value="Sokoto">Sokoto</option>
+                                <option value="Taraba">Taraba</option>
+                                <option value="Yobe">Yobe</option>
+                                <option value="Zamfara">Zamfara</option>
+                                <option value="Abuja - FCT">Abuja - FCT </option>
+                            </select>
+                </div>
+                <button class="btn ui-btn dark-blue">Search</button>
+                </form>
+            </div>
+    </div>
+    <!--end banner-->
+
+    <!--listings-->
+    <div class="listings">
+        <div class="row">
+            
+            <div class="col-lg-9 col-md-12">
+                <div class="row">
+                    {{#each schools}}
+                    <div class="col-lg-6 col-md-6">
+                        <div class="listing-item">
+                            <a href="/schools/{{_id}}"><div class="cover-img">
+                                <img src="{{image}}" alt="">
+                                <div class="cover-hover">
+                                </div>
+                            </div></a>
+                            <div class="listing-info">
+                                <div class="details">
+                                   <a href="/schools/{{_id}}"> <strong> {{name}} -></strong></a>
+                                    <span> {{type}} </span>
+                                    <p>
+                                       <!--  {{description}}... -->
+                                       <a href="/schools/{{_id}}" class="btn btn-primary">Rate & View Details</a>
+                                    <hr></p>
+                                    <i class="fa fa-map-marker text-info"></i> <em> {{location}} </em>
+                                    <div class="user-counts">
+                                            <div class="count-item">
+                                                <i class="fa fa-pencil-square-o text-rose"></i>
+                                                <strong> {{reviews.length}} </strong>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="bottom-details">
+                                    <a href="/schools/{{_id}}">View <i class="fa fa-angle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {{/each}}
+            </div>
+
+        </div>
+    </div>
+    <!--end listings-->
+
+</div>
+
+<!--footer section-->
+<div class="footer">
+        <div class="row">
+            <div class="col-lg-3 col-md-3"></div><p class="copyright footer-logo"><i  class="fa fa-copyright"></i> 2018 Saucecode.
+                Developed with <i class="fa fa-heart text-info"></i>&nbsp; by <a href="https://github.com/seunzone"><strong>Seun</strong></a> and <a href="https://github.com/leksyib"><strong>Lekan</strong></a></p><div class="col-lg-3 col-md-3">
+                </div>
+                <div class="col-lg-3 col-md-3"></div>
+            <div class="col-lg-3 col-md-3">         
+            </div>
+    </div>
+    </div>
+    <!--end footer section-->
+
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-nice-select/1.1.0/js/jquery.nice-select.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.perfect-scrollbar/0.8.1/js/perfect-scrollbar.jquery.min.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
